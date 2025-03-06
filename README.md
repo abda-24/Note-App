@@ -1,31 +1,53 @@
-<<<<<<< HEAD
-# NoteApp
+# Note App 📝
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+## Overview
+Note App is a powerful and user-friendly note-taking application built with **Angular 17**. It allows users to create, update, search, and delete notes while ensuring a secure and seamless experience using authentication and authorization mechanisms.
 
-## Development server
+## Features 🚀
+- **Authentication & Authorization** 🔒
+  - User login & registration with JWT authentication
+  - Secure token-based access management
+  
+- **CRUD Operations** ✏️
+  - Add new notes
+  - Update existing notes
+  - Delete notes
+  - Search & filter notes using **pipes**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **User Experience Enhancements** 🎨
+  - Responsive & modern UI
+  - Input validation for all forms
+  - Real-time form validation feedback
 
-## Code scaffolding
+## Technologies Used 🛠️
+- **Angular 17** (Latest version)
+- **TypeScript**
+- **Bootstrap** (for styling & responsiveness)
+- **RxJS** (for reactive programming)
+- **Angular Pipes** (for searching & filtering notes)
+- **JWT Authentication** (for secure login/logout)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation & Setup ⚙️
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/abda-24/Note-Application.git
+   cd Note-Application
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the application:
+   ```bash
+   ng serve
+   ```
+4. Open in browser: `http://localhost:4200`
 
-## Build
+## Usage 🖥️
+1. **Register** a new account
+2. **Login** using your credentials
+3. Start creating, updating, and deleting notes easily
+4. Use the **search feature** to find notes quickly
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-=======
-# Note-App
->>>>>>> 0685008fd08dfd1bb6b0c86fea7c7a87c287944c
