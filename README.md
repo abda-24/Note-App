@@ -48,6 +48,9 @@ Note App is a powerful and user-friendly note-taking application built with **An
 2. **Login** using your credentials
 3. Start creating, updating, and deleting notes easily
 4. Use the **search feature** to find notes quickly
+5. Watch Live Demo 🎥
+6. https://note-app-swart-rho.vercel.app/register
+   
 
 
 
