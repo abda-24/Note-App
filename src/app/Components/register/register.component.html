@@ -1,0 +1,134 @@
+<section class="container mt-5">
+  <h2 class="text-center mb-4">Register Now</h2>
+ <div class="container">
+  <form [formGroup]="RegisterFrom" (ngSubmit)="SubmitRegister()">
+    <!-- Name Field -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input [ngClass]="{
+        'is-valid': !RegisterFrom.get('name')?.errors && RegisterFrom.get('name')?.touched,
+        'is-invalid': RegisterFrom.get('name')?.errors && RegisterFrom.get('name')?.touched
+      }" type="text" class="form-control" id="name" formControlName="name" placeholder="Enter your name">
+      @if (RegisterFrom.get('name')?.errors && (RegisterFrom.get('name')?.touched || RegisterFrom.get('name')?.dirty)) {
+        <div class="text-danger">
+          @if (RegisterFrom.get('name')?.getError('required')) {
+            <p class="m-0">Name is required</p>
+          }
+          @else if (RegisterFrom.get('name')?.getError('minlength')) {
+            <p class="m-0">Name must be at least 3 characters</p>
+          }
+          @else if (RegisterFrom.get('name')?.getError('maxlength')) {
+            <p class="m-0">Name cannot exceed 50 characters</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Email Field -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input [ngClass]="{
+        'is-valid': !RegisterFrom.get('email')?.errors && RegisterFrom.get('email')?.touched,
+        'is-invalid': RegisterFrom.get('email')?.errors && RegisterFrom.get('email')?.touched
+      }" type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
+      @if (RegisterFrom.get('email')?.errors && (RegisterFrom.get('email')?.touched || RegisterFrom.get('email')?.dirty)) {
+        <div class="text-danger">
+          @if (RegisterFrom.get('email')?.getError('required')) {
+            <p class="m-0">Email is required</p>
+          }
+          @else if (RegisterFrom.get('email')?.getError('email')) {
+            <p class="m-0">Invalid email format</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Password Field -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input [ngClass]="{
+        'is-valid': !RegisterFrom.get('password')?.errors && RegisterFrom.get('password')?.touched,
+        'is-invalid': RegisterFrom.get('password')?.errors && RegisterFrom.get('password')?.touched
+      }" type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+      @if (RegisterFrom.get('password')?.errors && (RegisterFrom.get('password')?.touched || RegisterFrom.get('password')?.dirty)) {
+        <div class="text-danger">
+          @if (RegisterFrom.get('password')?.getError('required')) {
+            <p class="m-0">Password is required</p>
+          }
+          @else if (RegisterFrom.get('password')?.getError('pattern')) {
+            <p class="m-0">Password must be at least 8 characters, contain a digit, and a special character</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Confirm Password Field -->
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input [ngClass]="{
+        'is-valid': !RegisterFrom.get('confirmPassword')?.errors && RegisterFrom.get('confirmPassword')?.touched,
+        'is-invalid': RegisterFrom.get('confirmPassword')?.errors && RegisterFrom.get('confirmPassword')?.touched
+      }" type="password" class="form-control" id="confirmPassword" formControlName="rePassword" placeholder="Confirm your password">
+      @if (RegisterFrom.get('confirmPassword')?.errors && (RegisterFrom.get('confirmPassword')?.touched || RegisterFrom.get('confirmPassword')?.dirty)) {
+        <div class="text-danger">
+          @if (RegisterFrom.get('confirmPassword')?.getError('required')) {
+            <p class="m-0">Confirm Password is required</p>
+          }
+          @else if (RegisterFrom.errors?.['compare']) {
+            <p class="m-0">Passwords do not match</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Age Field -->
+    <div class="mb-3">
+      <label for="age" class="form-label">Age</label>
+      <input [ngClass]="{
+        'is-valid': !RegisterFrom.get('age')?.errors && RegisterFrom.get('age')?.touched,
+        'is-invalid': RegisterFrom.get('age')?.errors && RegisterFrom.get('age')?.touched
+      }" type="number" class="form-control" id="age" formControlName="age" placeholder="Enter your age">
+      @if (RegisterFrom.get('age')?.errors && (RegisterFrom.get('age')?.touched || RegisterFrom.get('age')?.dirty)) {
+        <div class="text-danger">
+          @if (RegisterFrom.get('age')?.getError('required')) {
+            <p class="m-0">Age is required</p>
+          }
+          @else if (RegisterFrom.get('age')?.getError('min')) {
+            <p class="m-0">Age must be at least 18</p>
+          }
+          @else if (RegisterFrom.get('age')?.getError('max')) {
+            <p class="m-0">Age cannot exceed 100</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Phone Field -->
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input [ngClass]="{
+        'is-valid': !RegisterFrom.get('phone')?.errors && RegisterFrom.get('phone')?.touched,
+        'is-invalid': RegisterFrom.get('phone')?.errors && RegisterFrom.get('phone')?.touched
+      }" type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter your phone number">
+      @if (RegisterFrom.get('phone')?.errors && (RegisterFrom.get('phone')?.touched || RegisterFrom.get('phone')?.dirty)) {
+        <div class="text-danger">
+          @if (RegisterFrom.get('phone')?.getError('required')) {
+            <p class="m-0">Phone is required</p>
+          }
+          @else if (RegisterFrom.get('phone')?.getError('pattern')) {
+            <p class="m-0">Invalid Egyptian phone number</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Submit Button -->
+    <button [disabled]="RegisterFrom.invalid || isLoading " type="submit" class="btn btn-primary w-100 d-block ms-auto">Register
+
+      @if (isLoading) {
+        <i class="fas fa-spinner fa-spin"></i>
+      }
+    </button>
+  </form>
+ </div>
+</section>

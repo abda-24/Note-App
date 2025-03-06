@@ -1,0 +1,56 @@
+<section class="container mt-5">
+  <h2 class="text-center mb-4">Login Now</h2>
+ <div class="container">
+  <form [formGroup]="loginForm"  (ngSubmit)="LoginFromValue()">
+    <!-- Name Field -->
+
+
+    <!-- Email Field -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input [ngClass]="{
+        'is-valid': !loginForm.get('email')?.errors && loginForm.get('email')?.touched,
+        'is-invalid': loginForm.get('email')?.errors && loginForm.get('email')?.touched
+      }" type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
+      @if (loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)) {
+        <div class="text-danger">
+          @if (loginForm.get('email')?.getError('required')) {
+            <p class="m-0">Email is required</p>
+          }
+          @else if (loginForm.get('email')?.getError('email')) {
+            <p class="m-0">Invalid email format</p>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Password Field -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input [ngClass]="{
+        'is-valid': !loginForm.get('password')?.errors && loginForm.get('password')?.touched,
+        'is-invalid': loginForm.get('password')?.errors && loginForm.get('password')?.touched
+      }" type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+      @if (loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)) {
+        <div class="text-danger">
+          @if (loginForm.get('password')?.getError('required')) {
+            <p class="m-0">Password is required</p>
+          }
+          @else if (loginForm.get('password')?.getError('pattern')) {
+            <p class="m-0">Password must be at least 8 characters, contain a digit, and a special character</p>
+          }
+        </div>
+      }
+    </div>
+
+
+    <!-- Submit Button -->
+    <button [disabled]="loginForm.invalid || isLoading " type="submit" class="btn btn-primary w-100 d-block ms-auto">Register
+
+      @if (isLoading) {
+        <i class="fas fa-spinner fa-spin"></i>
+      }
+    </button>
+  </form>
+ </div>
+</section>

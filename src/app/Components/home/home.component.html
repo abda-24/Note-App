@@ -1,0 +1,140 @@
+<div class="container text-center mt-4">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Note
+  </button>
+</div>
+
+<!-- Add Note Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New Note</h1>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="AddNote" (ngSubmit)="AddNoteSubmit()">
+          <!-- Title Field -->
+          <div class="mb-3">
+            <label for="recipient-name" class="form-label">Title:</label>
+            <input type="text" formControlName="title" class="form-control" id="recipient-name">
+            @if (AddNote.get('title')?.errors && AddNote.get('title')?.touched) {
+              <div class="text-danger">
+                @if (AddNote.get('title')?.getError('required')) {
+                  Title is required.
+                }
+                @else if (AddNote.get('title')?.getError('minLength')) {
+                  Title must be at least 3 characters.
+                }
+                @else if (AddNote.get('title')?.getError('maxLength')) {
+                  Title cannot exceed 50 characters.
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Content Field -->
+          <div class="mb-3">
+            <label for="message-text" class="form-label">Content:</label>
+            <textarea class="form-control" formControlName="content" id="message-text" rows="4"></textarea>
+            @if (AddNote.get('content')?.errors && AddNote.get('content')?.touched) {
+              <div class="text-danger">
+                @if (AddNote.get('content')?.getError('required')) {
+                  Content is required.
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Note</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notes List -->
+<div class="container mt-4">
+  <div class="input-group mb-3">
+    <span class="input-group-text"><i class="fas fa-search"></i></span>
+    <input [(ngModel)]="TextTerm" type="text" class="form-control" placeholder="Search Note">
+  </div>
+  <div class="row">
+    @for (list of notesList |search:TextTerm; track list._id) {
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{list.title}}</h5>
+            <p class="card-text">{{list.content}}</p>
+            <div class="d-flex justify-content-between">
+              <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" (click)="updateNoteSubmit(list,list._id)" data-bs-target="#updateexampleModal">
+                <i class="fas fa-edit"></i> Update
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="delateTask(list._id)">
+                <i class="fas fa-trash"></i> Delete
+
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Update Note Modal -->
+<div class="modal fade" id="updateexampleModal" tabindex="-1" aria-labelledby="updateexampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h1 class="modal-title fs-5" id="updateexampleModalLabel">Update Note</h1>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="UpdateNoteForm" (ngSubmit)="updateNote()">
+          <!-- Title Field -->
+          <div class="mb-3">
+            <label for="update-title" class="form-label">Title:</label>
+            <input type="text" formControlName="title" class="form-control" id="update-title">
+            @if (UpdateNoteForm.get('title')?.errors && UpdateNoteForm.get('title')?.touched) {
+              <div class="text-danger">
+                @if (UpdateNoteForm.get('title')?.getError('required')) {
+                  Title is required.
+                }
+                @else if (UpdateNoteForm.get('title')?.getError('minLength')) {
+                  Title must be at least 3 characters.
+                }
+                @else if (UpdateNoteForm.get('title')?.getError('maxLength')) {
+                  Title cannot exceed 50 characters.
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Content Field -->
+          <div class="mb-3">
+            <label for="update-content" class="form-label">Content:</label>
+            <textarea class="form-control" formControlName="content" id="update-content" rows="4"></textarea>
+            @if (UpdateNoteForm.get('content')?.errors && UpdateNoteForm.get('content')?.touched) {
+              <div class="text-danger">
+                @if (UpdateNoteForm.get('content')?.getError('required')) {
+                  Content is required.
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Update Note</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
